@@ -4,6 +4,7 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.eden.resource.client.common.constants.Constants;
 import com.eden.resource.client.common.exception.NginxException;
 import com.eden.resource.client.service.NginxService;
+import com.eden.resource.client.util.ShellUtils;
 import com.github.odiszapc.nginxparser.NgxConfig;
 import com.github.odiszapc.nginxparser.NgxDumper;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,6 +22,11 @@ public class NginxServiceImpl implements NginxService {
 
     @Value("${nginx.config}")
     private String nginxConfPath;
+
+    @Override
+    public String getNginxConfPath() {
+        return ShellUtils.getNginxPath();
+    }
 
     /**
      * 读取配置文件

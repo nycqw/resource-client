@@ -9,6 +9,8 @@ import com.github.odiszapc.nginxparser.NgxConfig;
  */
 public interface NginxService {
 
+    String getNginxConfPath();
+
     NgxConfig read();
 
     void save(NgxConfig conf);
