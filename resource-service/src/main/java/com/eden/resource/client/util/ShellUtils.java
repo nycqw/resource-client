@@ -7,13 +7,6 @@ import java.io.*;
 @Slf4j
 public class ShellUtils {
 
-    public static String getNginxPath() {
-        String cmd = "find / -name nginx.conf";
-        String result = execute(cmd, "/");
-        String[] paths = result.split("/n");
-        return paths[0];
-    }
-
     public static String execute(String cmd, String path) {
         return execute(cmd, new File(path));
     }

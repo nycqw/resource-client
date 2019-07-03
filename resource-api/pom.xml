@@ -23,32 +23,7 @@
             <groupId>com.github.odiszapc</groupId>
             <artifactId>nginxparser</artifactId>
             <version>${nginx.parser.version}</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/lib/nginxparser-1.0.0.jar</systemPath>
         </dependency>
     </dependencies>
-
-    <build>
-        <plugins>
-            <!--打包本地jar文件-->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <configuration>
-                    <webResources>
-                        <resource>
-                            <directory>${project.basedir}/lib</directory>
-                            <targetPath>WEB-INF/lib</targetPath>
-                            <filtering>false</filtering>
-                            <includes>
-                                <include>**/*.jar</include>
-                            </includes>
-                        </resource>
-                    </webResources>
-                </configuration>
-                <version>2.1.1</version>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>

@@ -23,11 +23,6 @@ public class NginxServiceImpl implements NginxService {
     @Value("${nginx.config}")
     private String nginxConfPath;
 
-    @Override
-    public String getNginxConfPath() {
-        return ShellUtils.getNginxPath();
-    }
-
     /**
      * 读取配置文件
      *
