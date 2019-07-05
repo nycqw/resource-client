@@ -1,13 +1,12 @@
 package com.eden.resource.client.service.nginx;
 
-import com.alibaba.dubbo.config.annotation.Service;
 import com.eden.resource.client.common.constants.Constants;
 import com.eden.resource.client.common.exception.NginxException;
 import com.eden.resource.client.service.NginxService;
-import com.eden.resource.client.util.ShellUtils;
 import com.github.odiszapc.nginxparser.NgxConfig;
 import com.github.odiszapc.nginxparser.NgxDumper;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -20,8 +19,11 @@ import java.io.IOException;
 @Service
 public class NginxServiceImpl implements NginxService {
 
-    @Value("${nginx.config}")
+    @Value("${nginx.conf}")
     private String nginxConfPath;
+
+    @Value("${nginx.ip}")
+    private String ip;
 
     /**
      * 读取配置文件
@@ -31,7 +33,10 @@ public class NginxServiceImpl implements NginxService {
     @Override
     public NgxConfig read() {
         try {
-            return NgxConfig.read(nginxConfPath + Constants.NGINX_CONF_NAME);
+            NgxConfig ngxConfig = NgxConfig.read(nginxConfPath + Constants.NGINX_CONF_NAME);
+            ngxConfig.addValue("conf");
+            ngxConfig.addValue(this.ip);
+            return ngxConfig;
         } catch (IOException e) {
             throw new NginxException();
         }
