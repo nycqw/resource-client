@@ -6,6 +6,6 @@ spring:
 
 
 nginx:
-  ip: 106.12.79.78
+  ip: 127.0.0.1
   conf: F:\install\nginx-1.8.1\conf
 
