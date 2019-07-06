@@ -5,6 +5,7 @@ import com.eden.resource.client.common.exception.NginxException;
 import com.eden.resource.client.service.NginxService;
 import com.github.odiszapc.nginxparser.NgxConfig;
 import com.github.odiszapc.nginxparser.NgxDumper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,7 @@ import java.io.IOException;
  * @since 2019/6/21
  */
 @Service
+@Slf4j
 public class NginxServiceImpl implements NginxService {
 
     @Value("${nginx.conf}")
@@ -33,7 +35,9 @@ public class NginxServiceImpl implements NginxService {
     @Override
     public NgxConfig read() {
         try {
-            NgxConfig ngxConfig = NgxConfig.read(nginxConfPath + Constants.NGINX_CONF_NAME);
+            String url = nginxConfPath + Constants.NGINX_CONF_NAME;
+            log.info("url: {}", url);
+            NgxConfig ngxConfig = NgxConfig.read(url);
             ngxConfig.addValue("conf");
             ngxConfig.addValue(this.ip);
             return ngxConfig;
