@@ -30,7 +30,7 @@ public class NginxController {
     }
 
     @PostMapping("bak")
-    public Result save(@RequestParam String conf) {
+    public Result save(@RequestBody String conf) {
         nginxService.save(conf);
         return Result.success();
     }
